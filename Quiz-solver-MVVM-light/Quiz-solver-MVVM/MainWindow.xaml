@@ -1,0 +1,47 @@
+﻿<Window x:Class="Quiz_solver_MVVM.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Quiz_solver_MVVM"
+        xmlns:viewmodels="clr-namespace:Quiz_solver_MVVM.ViewModel"
+        xmlns:views="clr-namespace:Quiz_solver_MVVM.Views"
+        Title="Quiz Solver" Height="350" Width="525"
+        mc:Ignorable="d"
+        DataContext="{Binding Main, Source={StaticResource Locator}}"     
+       >
+    <Grid >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="6">
+
+            <!--<DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="1"
+                       >
+                <TextBlock Grid.Row ="0" FontFamily="after night" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center">QuizCreator</TextBlock>
+
+            </DockPanel>-->
+            <Frame  Source="./Views/StartView.xaml" x:Name="MainFrame" 
+                    NavigationUIVisibility="Hidden"
+                    Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="5"
+                    Width="{Binding ActualWidth, 
+                    RelativeSource = {RelativeSource AncestorType = {x:Type Window}}}" 
+                    Height="{Binding ActualHeight, 
+                    RelativeSource ={RelativeSource AncestorType = {x:Type Window}}}"/>
+        </StackPanel>
+    </Grid>
+
+</Window>

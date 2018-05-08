@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="Quiz_solver_MVVM.Views.StartView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Quiz_solver_MVVM.Views"
+             
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300"
+              DataContext="{Binding Start, Source={StaticResource Locator}}">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <DockPanel Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="6" Grid.RowSpan="6">
+            <GroupBox BorderBrush="{x:Null}" Foreground="#FF21272C" BorderThickness="0">
+                <StackPanel >
+                    <TextBlock FontSize="28" Foreground="#FF21272C" HorizontalAlignment="Center" FontFamily="Lato">Choose Quiz</TextBlock>
+                    <ComboBox HorizontalAlignment="Center" Height="39"  Width="100"
+                              ItemsSource="{Binding Path=QuizList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              DisplayMemberPath="QuizName"
+                              SelectedValue="{Binding Path=CurrentQuizId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              SelectedValuePath="QuizId">
+                    </ComboBox>
+                    <Button  Margin="119,25,118.2,0" Foreground="#FFFFFFFF" 
+                    	Content="Start!" FontSize="12" Width="50" Height="30" 
+                    	Background="#FF1D986F" BorderBrush="{x:Null}" FontFamily="Lato Black"
+                    	Command="{Binding NavigateToCurrentQuestionViewCmd}"
+                    	CommandParameter="{Binding }"/>
+                </StackPanel>
+            </GroupBox>
+        </DockPanel>
+
+    </Grid>
+</UserControl>
