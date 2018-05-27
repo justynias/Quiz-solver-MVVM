@@ -97,7 +97,7 @@ namespace Quiz_solver_MVVM.ViewModel
         {
             try
             {
-                using (System.IO.StreamReader r = new System.IO.StreamReader(@"E:\Cs\data.json"))
+                using (System.IO.StreamReader r = new System.IO.StreamReader(@"E:\Cs\Quiz-solver-MVVM\data.json"))
                 {
                     string json = r.ReadToEnd();
                     QuizList = JsonConvert.DeserializeObject<ObservableCollection<QuizModel>>(json);

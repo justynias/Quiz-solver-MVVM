@@ -1,0 +1,77 @@
+[{
+    "QuizName": "Zwierzątka",
+    "QuestionsList": [{
+        "QuestionName": "Ile nóg ma piesek?",
+        "AnswersList": [{
+            "AnswerName": "1",
+            "IsValid": false,
+            "AnswerId": "c5cf2922-14e9-41e4-8402-f15bbfa91f3e"
+        }, {
+            "AnswerName": "2",
+            "IsValid": false,
+            "AnswerId": "949bd9bb-8502-47ef-8c9e-1a95ee3302ba"
+        }, {
+            "AnswerName": "3",
+            "IsValid": false,
+            "AnswerId": "2356e840-2a11-4d12-878d-c0f5c48218a9"
+        }, {
+            "AnswerName": "4",
+            "IsValid": true,
+            "AnswerId": "98e3dc5b-33b3-4b50-a06c-fa99c68baf13"
+        }, {
+            "AnswerName": "Ile chce moze miec",
+            "IsValid": true,
+            "AnswerId": "b9f459fb-c831-42c0-be76-75fdc45f6e59"
+        }],
+        "QuestionId": "db36ff36-db08-48b4-ad48-21af438e89b5"
+    }, {
+        "QuestionName": "Ile nog ma zabka?",
+        "AnswersList": [{
+            "AnswerName": "1",
+            "IsValid": false,
+            "AnswerId": "378a97b3-ec8e-43c6-9db5-eed628e5fb89"
+        }, {
+            "AnswerName": "2",
+            "IsValid": false,
+            "AnswerId": "1ac9e588-d0c4-45cb-9092-f494bcdbd4df"
+        }, {
+            "AnswerName": "3",
+            "IsValid": false,
+            "AnswerId": "e81e8583-0ce1-4a15-a24c-67ab991bcb67"
+        }, {
+            "AnswerName": "4",
+            "IsValid": false,
+            "AnswerId": "c88598db-7da6-4384-98a1-bf730151938c"
+        }, {
+            "AnswerName": "Kodowanie dynamiczne",
+            "IsValid": true,
+            "AnswerId": "1c18ea8e-513e-4c06-bf80-af27bef96011"
+        }],
+        "QuestionId": "50f3d610-f123-4fbe-96a8-fcece705024d"
+    }],
+    "QuizId": "cdf7b845-08e5-4a73-90e8-0ae7707f999c"
+}, {
+    "QuizName": "Programowanie",
+    "QuestionsList": [{
+        "QuestionName": "Najlepszy język programowania?",
+        "AnswersList": [{
+            "AnswerName": "Javascript",
+            "IsValid": true,
+            "AnswerId": "c2c3472b-1605-48c5-95c4-ca763cc7f165"
+        }, {
+            "AnswerName": "c hash",
+            "IsValid": false,
+            "AnswerId": "5cc1cd9a-c6af-4186-9f72-7edbb1c42ba4"
+        }, {
+            "AnswerName": "c#",
+            "IsValid": false,
+            "AnswerId": "12da566b-1529-4820-9e51-3ca9ad72e753"
+        }, {
+            "AnswerName": "C++",
+            "IsValid": false,
+            "AnswerId": "0b5a46bf-d80c-4340-8abb-352bcec59c3f"
+        }],
+        "QuestionId": "9f03cce9-85aa-45c8-9be4-3a910381ff27"
+    }],
+    "QuizId": "0e3a0f61-b0e5-4c23-af81-866fd44022d3"
+}]
