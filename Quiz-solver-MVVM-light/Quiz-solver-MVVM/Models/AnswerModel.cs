@@ -8,12 +8,15 @@ using System.Collections.ObjectModel;
 
 namespace Quiz_solver_MVVM.Models
 {
+   
     public class AnswerModel : ObservableObject
     {
         #region Fields
         private string answerName;
         private bool isValid;
         private Guid answerId;
+        private bool userAnswer;
+        
         #endregion
         #region Properties
         public string AnswerName
@@ -34,6 +37,7 @@ namespace Quiz_solver_MVVM.Models
             }
         }
 
+
         public bool IsValid
         {
             get
@@ -50,6 +54,25 @@ namespace Quiz_solver_MVVM.Models
                 }
             }
         }
+
+        public bool UserAnswer
+        {
+            get
+            {
+                return userAnswer;
+
+            }
+            set
+            {
+                if (userAnswer != value)
+                {
+                    userAnswer = value;
+                    RaisePropertyChanged("USerAnswer");
+                }
+            }
+        }
+
+       
 
         public Guid AnswerId
         {
@@ -68,6 +91,9 @@ namespace Quiz_solver_MVVM.Models
 
             }
         }
+
+
         #endregion
+    
     }
 }

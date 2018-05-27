@@ -6,11 +6,12 @@
         xmlns:local="clr-namespace:Quiz_solver_MVVM"
         xmlns:viewmodels="clr-namespace:Quiz_solver_MVVM.ViewModel"
         xmlns:views="clr-namespace:Quiz_solver_MVVM.Views"
-        Title="Quiz Solver" Height="350" Width="525"
+        Title="Quiz Solver" Height="550" Width="500"
         mc:Ignorable="d"
+        ResizeMode="NoResize"
         DataContext="{Binding Main, Source={StaticResource Locator}}"     
        >
-    <Grid >
+    <Grid Width="493">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
@@ -27,7 +28,7 @@
             <RowDefinition />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="6">
+        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="6" Width="500" Height="550">
 
             <!--<DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="1"
                        >
@@ -36,11 +37,11 @@
             </DockPanel>-->
             <Frame  Source="./Views/StartView.xaml" x:Name="MainFrame" 
                     NavigationUIVisibility="Hidden"
-                    Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="5"
+                    Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="6"
                     Width="{Binding ActualWidth, 
                     RelativeSource = {RelativeSource AncestorType = {x:Type Window}}}" 
                     Height="{Binding ActualHeight, 
-                    RelativeSource ={RelativeSource AncestorType = {x:Type Window}}}"/>
+                    RelativeSource ={RelativeSource AncestorType = {x:Type Window}}}" HorizontalAlignment="Center"/>
         </StackPanel>
     </Grid>
 

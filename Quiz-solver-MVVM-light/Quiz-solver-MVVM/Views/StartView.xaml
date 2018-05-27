@@ -7,7 +7,7 @@
              
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300"
-              DataContext="{Binding Start, Source={StaticResource Locator}}">
+             DataContext="{Binding Start, Source={StaticResource Locator}}" Width="500" Height="550" Margin="0">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -27,19 +27,20 @@
         </Grid.RowDefinitions>
         <DockPanel Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="6" Grid.RowSpan="6">
             <GroupBox BorderBrush="{x:Null}" Foreground="#FF21272C" BorderThickness="0">
-                <StackPanel >
-                    <TextBlock FontSize="28" Foreground="#FF21272C" HorizontalAlignment="Center" FontFamily="Lato">Choose Quiz</TextBlock>
-                    <ComboBox HorizontalAlignment="Center" Height="39"  Width="100"
-                              ItemsSource="{Binding Path=QuizList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                              DisplayMemberPath="QuizName"
-                              SelectedValue="{Binding Path=CurrentQuizId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                              SelectedValuePath="QuizId">
-                    </ComboBox>
-                    <Button  Margin="119,25,118.2,0" Foreground="#FFFFFFFF" 
-                    	Content="Start!" FontSize="12" Width="50" Height="30" 
+                <StackPanel Width="400" Height="400" >
+                    <TextBlock FontSize="32" Foreground="#FF21272C" HorizontalAlignment="Center" FontFamily="Lato" 
+                               Margin="0,10,0,0">Choose Quiz</TextBlock>
+                    <ComboBox HorizontalAlignment="Center" Height="39"  Width="220"
+                    	ItemsSource="{Binding QuizList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    	DisplayMemberPath="QuizName"
+                    	SelectedValue="{Binding CurrentQuizId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    	SelectedValuePath="QuizId" FontFamily="Lato" FontSize="18.667" Foreground="#FF21272C" 
+                    	Margin="92,10,88,0" />
+                    <Button  Margin="134,25,143,0" Foreground="#FFFFFFFF" 
+                    	Content="Start!" FontSize="24" Height="61" 
                     	Background="#FF1D986F" BorderBrush="{x:Null}" FontFamily="Lato Black"
                     	Command="{Binding NavigateToCurrentQuestionViewCmd}"
-                    	CommandParameter="{Binding }"/>
+                    	CommandParameter="{Binding ''}" HorizontalAlignment="Center" Width="123"/>
                 </StackPanel>
             </GroupBox>
         </DockPanel>

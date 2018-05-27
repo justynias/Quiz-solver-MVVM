@@ -5,8 +5,81 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Quiz_solver_MVVM.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="400" d:DesignWidth="500"
+             DataContext="{Binding Summary, Source={StaticResource Locator}}">
     <Grid>
-            
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="6" Width="400" Height="500">
+            <StackPanel>
+                <Label Content="Your Result:" FontSize="40" FontFamily="Lato" HorizontalAlignment="Center" 
+                       Foreground="#FF21272C"/>
+                <Label Content="{Binding FinishedQuiz.Result}" FontSize="40" FontFamily="Lato" HorizontalAlignment="Center" 
+                       Foreground="#FF1D986F"/>
+
+
+                <TreeView ItemsSource="{Binding FinishedQuiz.QuestionsList, Mode=OneWay, 
+                    UpdateSourceTrigger=PropertyChanged}" Width="400" Height="300">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <TreeViewItem IsExpanded="True" Header="{Binding QuestionName}" x:Name="BackgroundQuestion" FontSize="20"
+                                          Width="350" FontFamily="Lato" Foreground="#FF292727" Margin="0,3" >
+
+                                <ListBox ItemsSource="{Binding AnswersList}"  Height="Auto" HorizontalAlignment="Stretch"  Width="300">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid Margin="1" x:Name="BackgroundGrid">
+                                                <CheckBox Grid.Column="3" Content="{Binding AnswerName}" IsChecked="{Binding UserAnswer}" 
+                                                          FontFamily="Lato" Foreground="#FF292727" FontSize="14"
+                                                           Width="280" IsEnabled="False"/>
+                                            </Grid>
+
+                                            <DataTemplate.Triggers>
+
+                                                <DataTrigger Binding="{Binding IsValid}" Value="True">
+                                                    <Setter TargetName="BackgroundGrid" Property="Background" Value="#FF1D986F"/>
+
+                                                </DataTrigger>
+                                            </DataTemplate.Triggers>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                                
+                                
+                            </TreeViewItem>
+                            <DataTemplate.Triggers>
+
+                                <DataTrigger Binding="{Binding IsQuestionCorrect}" Value="False">
+                                    <Setter TargetName="BackgroundQuestion" Property="Background" Value="#FFD37272"/>
+                                </DataTrigger>
+                            </DataTemplate.Triggers>
+                            
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                    
+                </TreeView>
+            </StackPanel>
+        </DockPanel>
     </Grid>
 </UserControl>

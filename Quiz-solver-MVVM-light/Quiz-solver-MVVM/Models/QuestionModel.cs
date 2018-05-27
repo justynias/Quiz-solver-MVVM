@@ -5,9 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
 using System.Collections.ObjectModel;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
 namespace Quiz_solver_MVVM.Models
 {
+    
     public class QuestionModel : ObservableObject
     {
         #region Fields
@@ -17,6 +20,24 @@ namespace Quiz_solver_MVVM.Models
         #endregion
 
         #region Properties
+
+        public bool IsQuestionCorrect
+        {
+            get
+            {
+                for (int i = 0; i < AnswersList.Count(); i++)
+                {
+                    if (AnswersList.ElementAt(i).IsValid != AnswersList.ElementAt(i).UserAnswer)
+                    {
+                        return false;
+                    }
+
+                }  
+                return true;
+
+            }
+
+        }
         public string QuestionName
         {
             get
@@ -67,6 +88,9 @@ namespace Quiz_solver_MVVM.Models
 
             }
         }
+
+       
+
         #endregion
     }
 }

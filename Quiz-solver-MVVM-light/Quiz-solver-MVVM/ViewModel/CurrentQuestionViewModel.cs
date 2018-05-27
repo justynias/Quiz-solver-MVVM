@@ -7,30 +7,34 @@ using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight;
 using Quiz_solver_MVVM.Helpers;
 using Quiz_solver_MVVM.Models;
+using System.Collections.ObjectModel;
+using GalaSoft.MvvmLight.CommandWpf;
 
 namespace Quiz_solver_MVVM.ViewModel
 {
+
     public class CurrentQuestionViewModel : ViewModelBase
     {
         private IFrameNavigationService navigationService;
-        //private string quizName;
         private QuizModel currentQuiz;
-        //public string QuizName
-        //{
-        //    get
-        //    {
-        //        return quizName;
-        //    }
+        private QuestionModel currentQuestion;
+        private int currentQuestionIndex;
+         
+        public QuestionModel CurrentQuestion
+        {
+            get
+            {
+                return currentQuestion;
+            }
 
-        //    set
-        //    {
-        //        quizName = value;
-        //        RaisePropertyChanged("QuizName");
-        //        //Console.WriteLine(QuizName);
+            set
+            {
+                currentQuestion = value;
+                RaisePropertyChanged("CurrentQuestion");
 
-        //        //Messenger.Default.Send<string>(value);
-        //    }
-        //}
+            }
+        }
+
         public QuizModel CurrentQuiz
         {
             get
@@ -41,25 +45,78 @@ namespace Quiz_solver_MVVM.ViewModel
             set
             {
                 currentQuiz = value;
-                RaisePropertyChanged("CurrentQuizName");
-                Console.WriteLine(CurrentQuiz.QuizName);
+                RaisePropertyChanged("CurrentQuiz");
             }
         }
 
+
+        public int CurrentQuestionIndex
+        {
+            get
+            {
+                return currentQuestionIndex;
+            }
+
+            set
+            {
+                currentQuestionIndex = value;
+                RaisePropertyChanged("CurrentQuestionIndex");
+               
+            }
+        }
+
+
+        public RelayCommand NavigateToNextQuestionViewCmd { get; private set; }
 
         public CurrentQuestionViewModel(IFrameNavigationService navigationService)
         {
             this.navigationService = navigationService;
 
             Messenger.Default.Register<CurrentQuizMessage>(this, this.HandleCurrentQuizMessage);
-            //Console.WriteLine("dupa");
+            NavigateToNextQuestionViewCmd = new RelayCommand(NavigateToNextQuestionView);
+           
         }
+ 
 
         private void HandleCurrentQuizMessage(CurrentQuizMessage message)
         {
             this.CurrentQuiz = message.Quiz;
-           // this.QuizId = message.Quiz.QuizId;
-            //this.QuestionsList = message.Quiz.QuestionsList;
+            if (CurrentQuiz.QuestionsList.Count() > 0)
+            {
+                this.CurrentQuestion = CurrentQuiz.QuestionsList.First();
+                this.CurrentQuestionIndex = 0;
+
+            }
+        }
+
+        private void NavigateToNextQuestionView()
+        {
+            CheckAnswers();
+            CurrentQuestionIndex++;
+            if(CurrentQuestionIndex < CurrentQuiz.QuestionsList.Count())
+            {
+                 CurrentQuestion = CurrentQuiz.QuestionsList.ElementAt(CurrentQuestionIndex);
+            }
+            else
+            {
+                Messenger.Default.Send<FinishedQuizMessage>(new FinishedQuizMessage
+                {
+                    Quiz = CurrentQuiz
+
+                });
+                navigationService.NavigateTo("Summary");
+            }
+         
+        }
+        private void  CheckAnswers()
+        {
+
+            try
+            {
+                if (CurrentQuestion.IsQuestionCorrect) CurrentQuiz.Result++;
+
+            }
+            catch (NullReferenceException) { }
         }
     }
 }

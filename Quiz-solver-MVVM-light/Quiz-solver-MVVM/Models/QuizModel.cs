@@ -16,6 +16,7 @@ namespace Quiz_solver_MVVM.Models
         private string quizName;
         private Guid quizId;
         private ObservableCollection<QuestionModel> questionsList;
+        private float result = 0;
         #endregion
         #region Properties
         public string QuizName
@@ -35,6 +36,22 @@ namespace Quiz_solver_MVVM.Models
             }
         }
 
+        public float Result
+        {
+            get
+            {
+
+                return result;
+            }
+
+            set
+            {
+                if (value != result)
+
+                 result = value;
+                RaisePropertyChanged("Result");
+            }
+        }
         public ObservableCollection<QuestionModel> QuestionsList
         {
             get

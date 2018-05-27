@@ -8,35 +8,57 @@
              xmlns:vm="clr-namespace:Quiz_solver_MVVM.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300"
-             DataContext="{Binding CurrentQuestion, Source={StaticResource Locator}}">
-    
-    <Grid Margin="25, 25, 25, 25">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-            </Grid.RowDefinitions>
-        
-        <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="5">
-            <StackPanel>
-                <TextBox   x:Name="textBoxQuestionName" FontSize="12" FontFamily="Lato" BorderBrush="{x:Null}" 
-                       SelectionBrush="#7200D70A" Foreground="#FF21272C"
-                       Width="200" HorizontalAlignment="Left"
-                       Grid.Row="0" Grid.Column="0" Grid.RowSpan="3"
-                       Text="{Binding CurrentQuiz, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
-                </TextBox>
+             DataContext="{Binding CurrentQuestion, Source={StaticResource Locator}}" Width="450" Height="500" HorizontalAlignment="Center">
 
+    <Grid Margin="25, 25, 25, 25">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="6">
+            <StackPanel HorizontalAlignment="Center">
+                <Label   x:Name="labelQuestionName" FontSize="18.667" FontFamily="Lato" BorderBrush="{x:Null}" 
+                       Width="400" HorizontalAlignment="Center" 
+                       Grid.Row="0" Grid.Column="0" Grid.RowSpan="3"
+                       Content="{Binding CurrentQuestion.QuestionName, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" 
+                           Margin="0,4,0,0" Background="#FF1D986F">
+                </Label>
+
+                <ListBox ItemsSource="{Binding CurrentQuestion.AnswersList, Mode=OneWay, 
+                    UpdateSourceTrigger=PropertyChanged}" SelectionMode="Multiple" 
+                       Foreground="#FF21272C" Width="400" Height="300" HorizontalAlignment="Center" Margin="0,0,0,20">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <CheckBox Content="{Binding  AnswerName, Mode=OneWay, 
+                    UpdateSourceTrigger=PropertyChanged}"
+                                 IsChecked="{Binding UserAnswer, Mode=TwoWay, 
+                    UpdateSourceTrigger=PropertyChanged}"
+                      Margin="3" Background="#FF1D986F" FontFamily="Lato" FontSize="16" Foreground="#FF21272C" />
+                            
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ListBox>
+                <Button x:Name="buttonNext" Content="Next" Width="116" 
+                        Command="{Binding NavigateToNextQuestionViewCmd}" Margin="0,11,0,0" Foreground="#FFFFFFFF"  
+                       Background="#FF1D986F" FontSize="24" Height="61" BorderBrush="{x:Null}" FontFamily="Lato Black"/>
             </StackPanel>
         </DockPanel>
     </Grid>

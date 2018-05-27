@@ -14,20 +14,21 @@ using GalaSoft.MvvmLight.Messaging;
 
 namespace Quiz_solver_MVVM.ViewModel
 {
-    public class StartViewModel : ObservableObject
+    public class StartViewModel : ViewModelBase 
     {
         #region Fields
         private ObservableCollection<QuizModel> quizList;
 
         private QuizModel currentQuiz;
         private Guid currentQuizId;
+ 
 
         IFrameNavigationService navigationService;
 
         #endregion
         #region Properties
 
-        public RelayCommand NavigateToCurrentQuestionViewCmd { get; private set; }
+        
         public ObservableCollection<QuizModel> QuizList
         {
             get
@@ -53,7 +54,6 @@ namespace Quiz_solver_MVVM.ViewModel
             {
                 currentQuiz = value;
                 RaisePropertyChanged("CurrentQuizName");
-                //Console.WriteLine(CurrentQuiz.QuizName);
             }
         }
 
@@ -82,13 +82,11 @@ namespace Quiz_solver_MVVM.ViewModel
         }
         #endregion
 
-
+        public RelayCommand NavigateToCurrentQuestionViewCmd { get; private set; }
         public StartViewModel(IFrameNavigationService navigationService)
         {
             this.navigationService = navigationService;
-            NavigateToCurrentQuestionViewCmd = new RelayCommand(NavigateToCurrentQuestionView);
-           /// Messenger.Default.Register<MVVMMessage>(this, this.SaveMessage);
-            Messenger.Default.Register<QuizModel>(this, this.HandleCurrentQuizMessage);
+            NavigateToCurrentQuestionViewCmd = new RelayCommand(NavigateToCurrentQuestionView, () => CurrentQuiz!=null);
             this.LoadQuizList();
 
 
@@ -97,14 +95,18 @@ namespace Quiz_solver_MVVM.ViewModel
         #region Methods
         private void LoadQuizList()
         {
-            
-            using (System.IO.StreamReader r = new System.IO.StreamReader(@"E:\Cs\data.json"))
+            try
             {
-                string json = r.ReadToEnd();
-                QuizList = JsonConvert.DeserializeObject<ObservableCollection<QuizModel>>(json);
-                 
+                using (System.IO.StreamReader r = new System.IO.StreamReader(@"E:\Cs\data.json"))
+                {
+                    string json = r.ReadToEnd();
+                    QuizList = JsonConvert.DeserializeObject<ObservableCollection<QuizModel>>(json);
+
+                }
             }
-            #endregion
+            catch (System.IO.FileNotFoundException) { } 
+            catch (JsonReaderException) { }
+
         }
         private void NavigateToCurrentQuestionView()
         {
@@ -115,12 +117,10 @@ namespace Quiz_solver_MVVM.ViewModel
 
             });
             navigationService.NavigateTo("CurrentQuestion");
-            //check if CurrentQuiz is not null!
         }
 
-        private void HandleCurrentQuizMessage(QuizModel msg)
-        {
-            CurrentQuiz = msg;
-        }
+        #endregion
+
     }
+
 }

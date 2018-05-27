@@ -73,7 +73,7 @@ namespace Quiz_solver_MVVM.ViewModel
             navigationService.Configure("Main", new Uri("../MainWindow.xaml", UriKind.Relative));
             navigationService.Configure("Start", new Uri("../Views/StartView.xaml", UriKind.Relative));
             navigationService.Configure("CurrentQuestion", new Uri("../Views/CurrentQuestionView.xaml", UriKind.Relative));
-            //navigationService.Configure("Summary", new Uri("../Views/SummaryView.xaml", UriKind.Relative));
+            navigationService.Configure("Summary", new Uri("../Views/SummaryView.xaml", UriKind.Relative));
 
            
             SimpleIoc.Default.Register<IFrameNavigationService>(() => navigationService);
@@ -81,14 +81,10 @@ namespace Quiz_solver_MVVM.ViewModel
             SimpleIoc.Default.Register<MainViewModel>(true);
             SimpleIoc.Default.Register<StartViewModel>(true);
             SimpleIoc.Default.Register<CurrentQuestionViewModel>(true);
-            //SimpleIoc.Default.Register<SummaryViewModel>(true);
+            SimpleIoc.Default.Register<SummaryViewModel>(true);
 
         }
 
 
-        //public static void Cleanup()
-        //{
-        //    // TODO Clear the ViewModels
-        //}
     }
 }
